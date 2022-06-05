@@ -14,7 +14,7 @@ public class MF_Game : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     
@@ -35,7 +35,7 @@ public class MF_Game : MonoBehaviour
         back3.SetActive(false);
     }
 
-    public void touchBack3(){
-        back3.SetActive(false);
+    public void touchBack4(){
+        back4.SetActive(false);
     }
 }
