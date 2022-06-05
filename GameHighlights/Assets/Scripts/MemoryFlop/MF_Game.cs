@@ -7,6 +7,9 @@ using System;
 public class MF_Game : MonoBehaviour
 {
     public GameObject back1;
+    public GameObject back2;
+    public GameObject back3;
+    public GameObject back4;
     public GameObject front1;
 
     void Start()
@@ -21,13 +24,18 @@ public class MF_Game : MonoBehaviour
     }
 
     public void touchBack1(){
-        if (back1.activeInHierarchy) // 判斷back1是否為顯示狀態
-        {
-            back1.SetActive(false);
-        }else
-        {
-            back1.SetActive(false);
-        }
-        
+        back1.SetActive(false);
+    }
+
+    public void touchBack2(){
+        back2.SetActive(false);
+    }
+
+    public void touchBack3(){
+        back3.SetActive(false);
+    }
+
+    public void touchBack3(){
+        back3.SetActive(false);
     }
 }
