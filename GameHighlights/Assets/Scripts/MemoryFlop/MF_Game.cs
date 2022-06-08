@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using Random=UnityEngine.Random;
-using System.Collections;
 using UnityEngine.Events;
 
 public class MF_Game : MonoBehaviour
@@ -34,27 +33,25 @@ public class MF_Game : MonoBehaviour
 
         for (int i = 0; i <= 11 ; i++) // 進入for迴圈
         {  
-           front[i].GetComponent<Image>().sprite = (Sprite)Resources.Load<Sprite>("MemoryFlop/img_"+a[i]);  // 設定front0~11抓到從Random出來的值
+           front[i].GetComponent<Image>().sprite = (Sprite)Resources.Load<Sprite>("MemoryFlop/img_"+a[i]);  // 設定GameObject front0~11裡面的圖片抓到從Random出來的值（因為此遊戲的img在MemoryFlop資料夾裡，所以在路徑上就多了一層）
         }
 
-        // Debug用
-        // front[0].GetComponent<Image>().sprite = (Sprite)Resources.Load<Sprite>("MemoryFlop/img_1");
-        // front[1].GetComponent<Image>().sprite = (Sprite)Resources.Load<Sprite>("MemoryFlop/img_7");
-        // front[2].GetComponent<Image>().sprite = (Sprite)Resources.Load<Sprite>("MemoryFlop/img_2");
-        // front[3].GetComponent<Image>().sprite = (Sprite)Resources.Load<Sprite>("MemoryFlop/img_8");
     }
 
     
     void Update()
     {
         if(global.mf_count >= 2 && global.mf_flop.Count >= 2){ // 如果亮兩張牌
-                  
             for (int i = 0; i < button.Length ; i++)  // 進入for迴圈
             {
                 button[i].SetActive(false); // 全部按鈕設置為不可見（表示不能再翻）
             }
+        }else{ 
+            for (int i = 0; i < button.Length ; i++)  // 進入for迴圈
+            {
+                button[i].SetActive(true); // 全部按鈕設置為可見（表示可以翻牌）
+            }
         }
-
         
     }
 
@@ -62,7 +59,7 @@ public class MF_Game : MonoBehaviour
     {
         int[] num = {1,2,3,4,5,6,7,8,9,10,11,12}; // 新增一個名為num的int陣列，裡面放1~8的數字
         // 使用for迴圈讓他跑num裡面的長度，產生不重複的隨機亂數
-        for (int i = 0; i < num.Length; i++){ 
+        for (int i = 0; i < num.Length; i++){  // 進入for迴圈
             int temp = num[i]; 
             int randomIndex = Random.Range(0, num.Length);
             num[i] = num[randomIndex];
@@ -97,27 +94,19 @@ public class MF_Game : MonoBehaviour
                 global.mf_flop.Clear();
                 global.mf_flop_back.Clear();
             }else{
-                // global.mf_flop[0].SetActive(true);
-                // global.mf_flop[1].SetActive(true);
-                // Invoke("test", 1);
-                // CancelInvoke("test");
-                global.mf_flop_back[0].SetActive(true);
-                global.mf_flop_back[1].SetActive(true);
-                global.mf_count = 0;
-                global.mf_flop.Clear();
-                global.mf_flop_back.Clear();
-                
+                Invoke("compareCards", 0.5f); //延遲0.5f後才執行compareCards這個function
             }
         }
         
     }
 
-    void test(){
+    public void compareCards(){ 
         global.mf_flop_back[0].SetActive(true);
         global.mf_flop_back[1].SetActive(true);
         global.mf_count = 0;
         global.mf_flop.Clear();
         global.mf_flop_back.Clear();
+        CancelInvoke("compareCards"); // 關掉延遲這個function
     }
 
     public void touchBack1(){
