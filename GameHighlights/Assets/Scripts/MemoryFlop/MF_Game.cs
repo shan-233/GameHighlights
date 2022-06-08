@@ -69,10 +69,10 @@ public class MF_Game : MonoBehaviour
     }
 
 
-    public void compare(){
+    public void compare(){ // 比對兩張牌的function
 
-        if(global.mf_flop[0] != null && global.mf_flop[1] != null){
-
+        if(global.mf_flop[0] != null && global.mf_flop[1] != null){ // 如果global.mf_flop陣列裡有兩個物件的話
+            // 判斷圖片是否一致
             if(global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_1") && global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_7") ||
                 global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_2") && global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_8") ||
                 global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_3") && global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_9") ||
@@ -87,12 +87,12 @@ public class MF_Game : MonoBehaviour
                 global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_12") && global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_6")
                 ){
 
-                global.mf_flop_back[0].SetActive(false);
-                global.mf_flop_back[1].SetActive(false);
+                global.mf_flop_back[0].SetActive(false); // 把翻出來的第一張牌封面隱藏
+                global.mf_flop_back[1].SetActive(false); // 把翻出來的第二張牌封面隱藏
             
-                global.mf_count = 0;
-                global.mf_flop.Clear();
-                global.mf_flop_back.Clear();
+                global.mf_count = 0; // 初始化翻牌次數
+                global.mf_flop.Clear(); // 清掉紀錄翻出來的兩張水果牌
+                global.mf_flop_back.Clear(); //清掉紀錄翻出來的兩張封面牌
             }else{
                 Invoke("compareCards", 0.5f); //延遲0.5f後才執行compareCards這個function
             }
@@ -100,27 +100,27 @@ public class MF_Game : MonoBehaviour
         
     }
 
-    public void compareCards(){ 
-        global.mf_flop_back[0].SetActive(true);
-        global.mf_flop_back[1].SetActive(true);
-        global.mf_count = 0;
-        global.mf_flop.Clear();
-        global.mf_flop_back.Clear();
+    public void compareCards(){ // 延遲執行比對程式碼的function
+        global.mf_flop_back[0].SetActive(true); // 顯示翻出來的第一張牌封面
+        global.mf_flop_back[1].SetActive(true); // 顯示翻出來的第二張牌封面
+        global.mf_count = 0; // 初始化翻牌次數
+        global.mf_flop.Clear(); // 清掉紀錄翻出來的兩張水果牌
+        global.mf_flop_back.Clear(); //清掉紀錄翻出來的兩張封面牌
         CancelInvoke("compareCards"); // 關掉延遲這個function
     }
 
-    public void touchBack1(){
+    public void touchBack1(){ // 按下第一個按鈕的function
         if (back[0].activeInHierarchy) // 判斷back1是否為顯示狀態，是的話
         {
             back[0].SetActive(false); // 就設置成不可見
-            global.mf_count++; //可翻牌次數+1
-            global.mf_flop.Add(front[0]);
-            global.mf_flop_back.Add(back[0]);
+            global.mf_count++; // 可翻牌次數+1
+            global.mf_flop.Add(front[0]); // 把水果牌加入global.mf_flop這個List裡面
+            global.mf_flop_back.Add(back[0]); // 把封面加入global.mf_flop_back這個List裡面
         }else //如果不是顯示狀態但還是按牌
         {
             back[0].SetActive(false); //就維持狀態不可見，翻牌次數也不用+1
         }
-        compare();
+        compare(); // 執行比對卡牌的function
     }
 
     public void touchBack2(){
