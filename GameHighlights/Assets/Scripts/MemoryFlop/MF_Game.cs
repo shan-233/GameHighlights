@@ -55,11 +55,11 @@ public class MF_Game : MonoBehaviour
         
     }
 
-    public int[] GetRandomNum() //生成亂數的function
+    public int[] GetRandomNum() //生成隨機亂數的function
     {
         int[] num = {1,2,3,4,5,6,7,8,9,10,11,12}; // 新增一個名為num的int陣列，裡面放1~8的數字
         // 使用for迴圈讓他跑num裡面的長度，產生不重複的隨機亂數
-        for (int i = 0; i < num.Length; i++){  // 進入for迴圈
+        for (int i = 0; i < num.Length; i++){  
             int temp = num[i]; 
             int randomIndex = Random.Range(0, num.Length);
             num[i] = num[randomIndex];
@@ -68,36 +68,49 @@ public class MF_Game : MonoBehaviour
         return num; // 當for完成時，回傳num值
     }
 
+    public int[] getOneToSix() //生成數字1-6的陣列function
+    {
+        int[] num = {1,2,3,4,5,6}; // 新增一個名為num的int陣列，裡面放1~8的數字
+        for (int i = 0; i < num.Length; i++){  
+        }
+        return num; // 當for完成時，回傳num值
+    }
+
+    public int[] getSevenToEight() //生成數字7-12的陣列function
+    {
+        int[] num = {7,8,9,10,11,12}; // 新增一個名為num的int陣列，裡面放7~12的數字
+        for (int i = 0; i < num.Length; i++){  
+        }
+        return num; // 當for完成時，回傳num值
+    }
+
 
     public void compare(){ // 比對兩張牌的function
 
         if(global.mf_flop[0] != null && global.mf_flop[1] != null){ // 如果global.mf_flop陣列裡有兩個物件的話
-            // 判斷圖片是否一致
-            if(global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_1") && global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_7") ||
-                global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_2") && global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_8") ||
-                global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_3") && global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_9") ||
-                global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_4") && global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_10") ||
-                global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_5") && global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_11") ||
-                global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_6") && global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_12") ||
-                global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_7") && global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_1") ||
-                global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_8") && global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_2") ||
-                global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_9") && global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_3") ||
-                global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_10") && global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_4") ||
-                global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_11") && global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_5") ||
-                global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_12") && global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_6")
-                ){
 
-                global.mf_flop_back[0].SetActive(false); // 把翻出來的第一張牌封面隱藏
-                global.mf_flop_back[1].SetActive(false); // 把翻出來的第二張牌封面隱藏
+            int[] a = getOneToSix(); // 宣告一個名稱為a的int陣列，裝從getOneToSix回傳來的1-6數值
+            int[] b = getSevenToEight(); // 宣告一個名稱為b的int陣列，裝從getSevenToEight回傳來的7-12數值
             
-                global.mf_count = 0; // 初始化翻牌次數
-                global.mf_flop.Clear(); // 清掉紀錄翻出來的兩張水果牌
-                global.mf_flop_back.Clear(); //清掉紀錄翻出來的兩張封面牌
-            }else{
-                Invoke("compareCards", 0.5f); //延遲0.5f後才執行compareCards這個function
+            for (int i = 0; i < 12; i++){ // 進入for迴圈
+
+                // 判斷圖片是否一致
+                if(global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_"+a[i]) && 
+                    global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_"+b[i]) ||
+                    global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_"+b[i]) && 
+                    global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_"+a[i]) ){
+
+                    global.mf_flop_back[0].SetActive(false); // 把翻出來的第一張牌封面隱藏
+                    global.mf_flop_back[1].SetActive(false); // 把翻出來的第二張牌封面隱藏
+                
+                    global.mf_count = 0; // 初始化翻牌次數
+                    global.mf_flop.Clear(); // 清掉紀錄翻出來的兩張水果牌
+                    global.mf_flop_back.Clear(); //清掉紀錄翻出來的兩張封面牌
+                }else{
+                    Invoke("compareCards", 0.5f); //延遲0.5f後才執行compareCards這個function
+                }
             }
         }
-        
     }
 
     public void compareCards(){ // 延遲執行比對程式碼的function
