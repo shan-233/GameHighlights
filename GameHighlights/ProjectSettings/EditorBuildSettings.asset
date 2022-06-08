@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Main.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/MemoryFlop.unity
+    path: Assets/Scenes/MemoryFlop/MF_Main.unity
     guid: f00f1caced153d940b669af571249633
+  - enabled: 1
+    path: Assets/Scenes/MemoryFlop/MF_Game.unity
+    guid: 440aaaa1523e9ac4faac7178f977702d
+  - enabled: 1
+    path: Assets/Scenes/MemoryFlop/MF_Result.unity
+    guid: 83f56f41e7d58fc4f88b59ed7bf7e19c
   m_configObjects: {}
