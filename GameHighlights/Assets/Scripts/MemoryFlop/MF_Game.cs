@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using Random=UnityEngine.Random;
+using System.Collections;
+using UnityEngine.Events;
 
 public class MF_Game : MonoBehaviour
 {
@@ -29,18 +31,6 @@ public class MF_Game : MonoBehaviour
         front[10] = GameObject.Find("front_11"); // 設定fornt[10]找到front_11
         front[11] = GameObject.Find("front_12"); // 設定fornt[11]找到front_12
 
-        // button[0] = GameObject.Find("img_1"); // 設定button[0]找到img_1
-        // button[1] = GameObject.Find("img_2"); // 設定button[0]找到img_1
-        // button[2] = GameObject.Find("img_3"); // 設定button[0]找到img_1
-        // button[3] = GameObject.Find("img_4"); // 設定button[0]找到img_1
-        // button[4] = GameObject.Find("img_5"); // 設定button[0]找到img_1
-        // button[5] = GameObject.Find("img_6"); // 設定button[0]找到img_1
-        // button[6] = GameObject.Find("img_7"); // 設定button[0]找到img_1
-        // button[7] = GameObject.Find("img_8"); // 設定button[0]找到img_1
-        // button[8] = GameObject.Find("img_9"); // 設定button[0]找到img_1
-        // button[9] = GameObject.Find("img_10"); // 設定button[0]找到img_1
-        // button[10] = GameObject.Find("img_11"); // 設定button[0]找到img_1
-        // button[11] = GameObject.Find("img_12"); // 設定button[0]找到img_1
 
         for (int i = 0; i <= 11 ; i++) // 進入for迴圈
         {  
@@ -50,17 +40,22 @@ public class MF_Game : MonoBehaviour
         // Debug用
         // front[0].GetComponent<Image>().sprite = (Sprite)Resources.Load<Sprite>("MemoryFlop/img_1");
         // front[1].GetComponent<Image>().sprite = (Sprite)Resources.Load<Sprite>("MemoryFlop/img_7");
+        // front[2].GetComponent<Image>().sprite = (Sprite)Resources.Load<Sprite>("MemoryFlop/img_2");
+        // front[3].GetComponent<Image>().sprite = (Sprite)Resources.Load<Sprite>("MemoryFlop/img_8");
     }
 
     
     void Update()
     {
         if(global.mf_count >= 2 && global.mf_flop.Count >= 2){ // 如果亮兩張牌
+                  
             for (int i = 0; i < button.Length ; i++)  // 進入for迴圈
             {
                 button[i].SetActive(false); // 全部按鈕設置為不可見（表示不能再翻）
             }
         }
+
+        
     }
 
     public int[] GetRandomNum() //生成亂數的function
@@ -78,27 +73,52 @@ public class MF_Game : MonoBehaviour
 
 
     public void compare(){
-        if(global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("img_1") && global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("img_7")||
-            global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("img_1") && global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("img_7")){
-            global.mf_flop_back[0].SetActive(false);
-            global.mf_flop_back[1].SetActive(false);
+
+        if(global.mf_flop[0] != null && global.mf_flop[1] != null){
+
+            if(global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_1") && global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_7") ||
+                global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_2") && global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_8") ||
+                global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_3") && global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_9") ||
+                global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_4") && global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_10") ||
+                global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_5") && global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_11") ||
+                global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_6") && global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_12") ||
+                global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_7") && global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_1") ||
+                global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_8") && global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_2") ||
+                global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_9") && global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_3") ||
+                global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_10") && global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_4") ||
+                global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_11") && global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_5") ||
+                global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_12") && global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_6")
+                ){
+
+                global.mf_flop_back[0].SetActive(false);
+                global.mf_flop_back[1].SetActive(false);
             
-            for (int j = 0; j < 12 ; j++)  // 進入for迴圈
-            {
-                button[j].SetActive(true); // 全部按鈕設置為不可見（表示不能再翻）
+                global.mf_count = 0;
+                global.mf_flop.Clear();
+                global.mf_flop_back.Clear();
+            }else{
+                // global.mf_flop[0].SetActive(true);
+                // global.mf_flop[1].SetActive(true);
+                // Invoke("test", 1);
+                // CancelInvoke("test");
+                global.mf_flop_back[0].SetActive(true);
+                global.mf_flop_back[1].SetActive(true);
+                global.mf_count = 0;
+                global.mf_flop.Clear();
+                global.mf_flop_back.Clear();
+                
             }
-            global.mf_count = 0;
-            global.mf_flop.Clear();
-            global.mf_flop_back.Clear();
-        }else{
-            global.mf_flop_back[0].SetActive(true);
-            global.mf_flop_back[1].SetActive(true);
-            global.mf_count = 0;
-            global.mf_flop.Clear();
-            global.mf_flop_back.Clear();
         }
+        
     }
 
+    void test(){
+        global.mf_flop_back[0].SetActive(true);
+        global.mf_flop_back[1].SetActive(true);
+        global.mf_count = 0;
+        global.mf_flop.Clear();
+        global.mf_flop_back.Clear();
+    }
 
     public void touchBack1(){
         if (back[0].activeInHierarchy) // 判斷back1是否為顯示狀態，是的話
@@ -106,10 +126,12 @@ public class MF_Game : MonoBehaviour
             back[0].SetActive(false); // 就設置成不可見
             global.mf_count++; //可翻牌次數+1
             global.mf_flop.Add(front[0]);
+            global.mf_flop_back.Add(back[0]);
         }else //如果不是顯示狀態但還是按牌
         {
             back[0].SetActive(false); //就維持狀態不可見，翻牌次數也不用+1
         }
+        compare();
     }
 
     public void touchBack2(){
@@ -123,6 +145,7 @@ public class MF_Game : MonoBehaviour
         {
             back[1].SetActive(false);
         }
+        compare();
     }
 
     public void touchBack3(){
@@ -136,6 +159,7 @@ public class MF_Game : MonoBehaviour
         {
             back[2].SetActive(false);
         }
+        compare();
     }
 
     public void touchBack4(){
@@ -149,6 +173,7 @@ public class MF_Game : MonoBehaviour
         {
             back[3].SetActive(false);
         }
+        compare();
     }
 
     public void touchBack5(){
@@ -162,6 +187,7 @@ public class MF_Game : MonoBehaviour
         {
             back[4].SetActive(false);
         }
+        compare();
     }
 
     public void touchBack6(){
@@ -175,6 +201,7 @@ public class MF_Game : MonoBehaviour
         {
             back[5].SetActive(false);
         }
+        compare();
     }
 
     public void touchBack7(){
@@ -188,6 +215,7 @@ public class MF_Game : MonoBehaviour
         {
             back[6].SetActive(false);
         }
+        compare();
     }
 
     public void touchBack8(){
@@ -201,6 +229,7 @@ public class MF_Game : MonoBehaviour
         {
             back[7].SetActive(false);
         }
+        compare();
     }
 
     public void touchBack9(){
@@ -214,6 +243,7 @@ public class MF_Game : MonoBehaviour
         {
             back[8].SetActive(false);
         }
+        compare();
     }
 
     public void touchBack10(){
@@ -227,6 +257,7 @@ public class MF_Game : MonoBehaviour
         {
             back[9].SetActive(false);
         }
+        compare();
     }
 
     public void touchBack11(){
@@ -240,6 +271,7 @@ public class MF_Game : MonoBehaviour
         {
             back[10].SetActive(false);
         }
+        compare();
     }
 
     public void touchBack12(){
@@ -253,5 +285,6 @@ public class MF_Game : MonoBehaviour
         {
             back[11].SetActive(false);
         }
+        compare();
     }
 }
