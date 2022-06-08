@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-using Random=UnityEngine.Random;
-using UnityEngine.Events;
+using Random=UnityEngine.Random; // 隨機亂數
+using UnityEngine.Events; // 延遲執行程式碼
 
 public class MF_Game : MonoBehaviour
 {
@@ -30,10 +30,10 @@ public class MF_Game : MonoBehaviour
         front[10] = GameObject.Find("front_11"); // 設定fornt[10]找到front_11
         front[11] = GameObject.Find("front_12"); // 設定fornt[11]找到front_12
 
-
         for (int i = 0; i <= 11 ; i++) // 進入for迴圈
         {  
-           front[i].GetComponent<Image>().sprite = (Sprite)Resources.Load<Sprite>("MemoryFlop/img_"+a[i]);  // 設定GameObject front0~11裡面的圖片抓到從Random出來的值（因為此遊戲的img在MemoryFlop資料夾裡，所以在路徑上就多了一層）
+           // 設定GameObject front0~11裡面的圖片抓到從Random出來的值（因為此遊戲的img在MemoryFlop資料夾裡，所以在路徑上就多了一層）
+           front[i].GetComponent<Image>().sprite = (Sprite)Resources.Load<Sprite>("MemoryFlop/img_"+a[i]);  
         }
 
     }
@@ -42,20 +42,19 @@ public class MF_Game : MonoBehaviour
     void Update()
     {
         if(global.mf_count >= 2 && global.mf_flop.Count >= 2){ // 如果亮兩張牌
-            for (int i = 0; i < button.Length ; i++)  // 進入for迴圈
-            {
+            for (int i = 0; i < button.Length ; i++){ // 進入for迴圈
                 button[i].SetActive(false); // 全部按鈕設置為不可見（表示不能再翻）
             }
-        }else{ 
-            for (int i = 0; i < button.Length ; i++)  // 進入for迴圈
-            {
+        } else { 
+            for (int i = 0; i < button.Length ; i++){ // 進入for迴圈
                 button[i].SetActive(true); // 全部按鈕設置為可見（表示可以翻牌）
             }
         }
-        
     }
 
-    public int[] GetRandomNum() //生成隨機亂數的function
+
+    //生成隨機亂數的function
+    public int[] GetRandomNum() 
     {
         int[] num = {1,2,3,4,5,6,7,8,9,10,11,12}; // 新增一個名為num的int陣列，裡面放1~8的數字
         // 使用for迴圈讓他跑num裡面的長度，產生不重複的隨機亂數
@@ -68,32 +67,34 @@ public class MF_Game : MonoBehaviour
         return num; // 當for完成時，回傳num值
     }
 
-    public int[] getOneToSix() //生成數字1-6的陣列function
+
+    //生成數字1-6的陣列function
+    public int[] getOneToSix()
     {
         int[] num = {1,2,3,4,5,6}; // 新增一個名為num的int陣列，裡面放1~8的數字
-        for (int i = 0; i < num.Length; i++){  
-        }
+        for (int i = 0; i < num.Length; i++){}
         return num; // 當for完成時，回傳num值
     }
 
-    public int[] getSevenToEight() //生成數字7-12的陣列function
+
+    //生成數字7-12的陣列function
+    public int[] getSevenToEight() 
     {
         int[] num = {7,8,9,10,11,12}; // 新增一個名為num的int陣列，裡面放7~12的數字
-        for (int i = 0; i < num.Length; i++){  
-        }
+        for (int i = 0; i < num.Length; i++){}
         return num; // 當for完成時，回傳num值
     }
 
 
-    public void compare(){ // 比對兩張牌的function
+    // 比對兩張牌的function
+    public void compare(){ 
 
         if(global.mf_flop[0] != null && global.mf_flop[1] != null){ // 如果global.mf_flop陣列裡有兩個物件的話
 
             int[] a = getOneToSix(); // 宣告一個名稱為a的int陣列，裝從getOneToSix回傳來的1-6數值
             int[] b = getSevenToEight(); // 宣告一個名稱為b的int陣列，裝從getSevenToEight回傳來的7-12數值
             
-            for (int i = 0; i < 12; i++){ // 進入for迴圈
-
+            for (int i = 0; i < a.Length; i++){ // 進入for迴圈
                 // 判斷圖片是否一致
                 if(global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_"+a[i]) && 
                     global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("MemoryFlop/img_"+b[i]) ||
@@ -107,30 +108,33 @@ public class MF_Game : MonoBehaviour
                     global.mf_flop.Clear(); // 清掉紀錄翻出來的兩張水果牌
                     global.mf_flop_back.Clear(); //清掉紀錄翻出來的兩張封面牌
                 }else{
-                    Invoke("compareCards", 0.5f); //延遲0.5f後才執行compareCards這個function
+                    Invoke("compareCards", 0.3f); //延遲0.3f後才執行compareCards這個function
                 }
             }
         }
     }
 
-    public void compareCards(){ // 延遲執行比對程式碼的function
+
+    // 延遲執行比對程式碼的function
+    public void compareCards(){ 
         global.mf_flop_back[0].SetActive(true); // 顯示翻出來的第一張牌封面
         global.mf_flop_back[1].SetActive(true); // 顯示翻出來的第二張牌封面
+        
         global.mf_count = 0; // 初始化翻牌次數
         global.mf_flop.Clear(); // 清掉紀錄翻出來的兩張水果牌
         global.mf_flop_back.Clear(); //清掉紀錄翻出來的兩張封面牌
         CancelInvoke("compareCards"); // 關掉延遲這個function
     }
 
-    public void touchBack1(){ // 按下第一個按鈕的function
-        if (back[0].activeInHierarchy) // 判斷back1是否為顯示狀態，是的話
-        {
+
+    // 按下第一個按鈕的function
+    public void touchBack1(){ 
+        if (back[0].activeInHierarchy){ // 判斷back1是否為顯示狀態，是的話
             back[0].SetActive(false); // 就設置成不可見
             global.mf_count++; // 可翻牌次數+1
             global.mf_flop.Add(front[0]); // 把水果牌加入global.mf_flop這個List裡面
             global.mf_flop_back.Add(back[0]); // 把封面加入global.mf_flop_back這個List裡面
-        }else //如果不是顯示狀態但還是按牌
-        {
+        } else { //如果不是顯示狀態但還是按牌
             back[0].SetActive(false); //就維持狀態不可見，翻牌次數也不用+1
         }
         compare(); // 執行比對卡牌的function
