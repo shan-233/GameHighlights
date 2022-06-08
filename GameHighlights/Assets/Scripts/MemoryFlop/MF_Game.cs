@@ -10,8 +10,7 @@ public class MF_Game : MonoBehaviour
     public GameObject[] front = new GameObject[12]; // 全部水果圖
     public GameObject[] back = new GameObject[12]; // 全部的封面圖
     public GameObject[] button = new GameObject[12]; // 按鈕
-    public GameObject[] org = new GameObject[6]; // 原本的圖
-    public GameObject[] img = new GameObject[6]; // 比對的圖
+    public Sprite[] org = new Sprite[12]; // 原本的圖
 
     void Start()
     {
@@ -30,17 +29,34 @@ public class MF_Game : MonoBehaviour
         front[10] = GameObject.Find("front_11"); // 設定fornt[10]找到front_11
         front[11] = GameObject.Find("front_12"); // 設定fornt[11]找到front_12
 
-        for (int i = 0; i <= a.Length ; i++) //for迴圈
+        // button[0] = GameObject.Find("img_1"); // 設定button[0]找到img_1
+        // button[1] = GameObject.Find("img_2"); // 設定button[0]找到img_1
+        // button[2] = GameObject.Find("img_3"); // 設定button[0]找到img_1
+        // button[3] = GameObject.Find("img_4"); // 設定button[0]找到img_1
+        // button[4] = GameObject.Find("img_5"); // 設定button[0]找到img_1
+        // button[5] = GameObject.Find("img_6"); // 設定button[0]找到img_1
+        // button[6] = GameObject.Find("img_7"); // 設定button[0]找到img_1
+        // button[7] = GameObject.Find("img_8"); // 設定button[0]找到img_1
+        // button[8] = GameObject.Find("img_9"); // 設定button[0]找到img_1
+        // button[9] = GameObject.Find("img_10"); // 設定button[0]找到img_1
+        // button[10] = GameObject.Find("img_11"); // 設定button[0]找到img_1
+        // button[11] = GameObject.Find("img_12"); // 設定button[0]找到img_1
+
+        for (int i = 0; i <= 11 ; i++) // 進入for迴圈
         {  
            front[i].GetComponent<Image>().sprite = (Sprite)Resources.Load<Sprite>("MemoryFlop/img_"+a[i]);  // 設定front0~11抓到從Random出來的值
         }
+
+        // Debug用
+        // front[0].GetComponent<Image>().sprite = (Sprite)Resources.Load<Sprite>("MemoryFlop/img_1");
+        // front[1].GetComponent<Image>().sprite = (Sprite)Resources.Load<Sprite>("MemoryFlop/img_7");
     }
 
     
     void Update()
     {
-        if(global.mf_count >= 2){ // 如果亮兩張牌
-            for (int i = 0; i < button.Length ; i++)
+        if(global.mf_count >= 2 && global.mf_flop.Count >= 2){ // 如果亮兩張牌
+            for (int i = 0; i < button.Length ; i++)  // 進入for迴圈
             {
                 button[i].SetActive(false); // 全部按鈕設置為不可見（表示不能再翻）
             }
@@ -60,11 +76,36 @@ public class MF_Game : MonoBehaviour
         return num; // 當for完成時，回傳num值
     }
 
+
+    public void compare(){
+        if(global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("img_1") && global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("img_7")||
+            global.mf_flop[1].GetComponent<Image>().sprite == Resources.Load<Sprite>("img_1") && global.mf_flop[0].GetComponent<Image>().sprite == Resources.Load<Sprite>("img_7")){
+            global.mf_flop_back[0].SetActive(false);
+            global.mf_flop_back[1].SetActive(false);
+            
+            for (int j = 0; j < 12 ; j++)  // 進入for迴圈
+            {
+                button[j].SetActive(true); // 全部按鈕設置為不可見（表示不能再翻）
+            }
+            global.mf_count = 0;
+            global.mf_flop.Clear();
+            global.mf_flop_back.Clear();
+        }else{
+            global.mf_flop_back[0].SetActive(true);
+            global.mf_flop_back[1].SetActive(true);
+            global.mf_count = 0;
+            global.mf_flop.Clear();
+            global.mf_flop_back.Clear();
+        }
+    }
+
+
     public void touchBack1(){
         if (back[0].activeInHierarchy) // 判斷back1是否為顯示狀態，是的話
         {
             back[0].SetActive(false); // 就設置成不可見
             global.mf_count++; //可翻牌次數+1
+            global.mf_flop.Add(front[0]);
         }else //如果不是顯示狀態但還是按牌
         {
             back[0].SetActive(false); //就維持狀態不可見，翻牌次數也不用+1
@@ -72,10 +113,12 @@ public class MF_Game : MonoBehaviour
     }
 
     public void touchBack2(){
-        if (back[1].activeInHierarchy) // 判斷back1是否為顯示狀態
+        if (back[1].activeInHierarchy) 
         {
             back[1].SetActive(false);
             global.mf_count++;
+            global.mf_flop.Add(front[1]);
+            global.mf_flop_back.Add(back[1]);
         }else
         {
             back[1].SetActive(false);
@@ -83,10 +126,12 @@ public class MF_Game : MonoBehaviour
     }
 
     public void touchBack3(){
-        if (back[2].activeInHierarchy) // 判斷back1是否為顯示狀態
+        if (back[2].activeInHierarchy) 
         {
             back[2].SetActive(false);
             global.mf_count++;
+            global.mf_flop.Add(front[2]);
+            global.mf_flop_back.Add(back[2]);
         }else
         {
             back[2].SetActive(false);
@@ -94,10 +139,12 @@ public class MF_Game : MonoBehaviour
     }
 
     public void touchBack4(){
-        if (back[3].activeInHierarchy) // 判斷back1是否為顯示狀態
+        if (back[3].activeInHierarchy) 
         {
             back[3].SetActive(false);
             global.mf_count++;
+            global.mf_flop.Add(front[3]);
+            global.mf_flop_back.Add(back[3]);
         }else
         {
             back[3].SetActive(false);
@@ -105,10 +152,12 @@ public class MF_Game : MonoBehaviour
     }
 
     public void touchBack5(){
-        if (back[4].activeInHierarchy) // 判斷back1是否為顯示狀態
+        if (back[4].activeInHierarchy) 
         {
             back[4].SetActive(false);
             global.mf_count++;
+            global.mf_flop.Add(front[4]);
+            global.mf_flop_back.Add(back[4]);
         }else
         {
             back[4].SetActive(false);
@@ -116,9 +165,11 @@ public class MF_Game : MonoBehaviour
     }
 
     public void touchBack6(){
-        if (back[5].activeInHierarchy) // 判斷back1是否為顯示狀態
+        if (back[5].activeInHierarchy) 
         {
             back[5].SetActive(false);
+            global.mf_flop.Add(front[5]);
+            global.mf_flop_back.Add(back[5]);
             global.mf_count++;
         }else
         {
@@ -127,9 +178,11 @@ public class MF_Game : MonoBehaviour
     }
 
     public void touchBack7(){
-        if (back[6].activeInHierarchy) // 判斷back1是否為顯示狀態
+        if (back[6].activeInHierarchy) 
         {
             back[6].SetActive(false);
+            global.mf_flop.Add(front[6]);
+            global.mf_flop_back.Add(back[6]);
             global.mf_count++;
         }else
         {
@@ -138,9 +191,11 @@ public class MF_Game : MonoBehaviour
     }
 
     public void touchBack8(){
-        if (back[7].activeInHierarchy) // 判斷back1是否為顯示狀態
+        if (back[7].activeInHierarchy) 
         {
             back[7].SetActive(false);
+            global.mf_flop.Add(front[7]);
+            global.mf_flop_back.Add(back[7]);
             global.mf_count++;
         }else
         {
@@ -149,9 +204,11 @@ public class MF_Game : MonoBehaviour
     }
 
     public void touchBack9(){
-        if (back[8].activeInHierarchy) // 判斷back1是否為顯示狀態
+        if (back[8].activeInHierarchy) 
         {
             back[8].SetActive(false);
+            global.mf_flop.Add(front[8]);
+            global.mf_flop_back.Add(back[8]);
             global.mf_count++;
         }else
         {
@@ -160,9 +217,11 @@ public class MF_Game : MonoBehaviour
     }
 
     public void touchBack10(){
-        if (back[9].activeInHierarchy) // 判斷back1是否為顯示狀態
+        if (back[9].activeInHierarchy) 
         {
             back[9].SetActive(false);
+            global.mf_flop.Add(front[9]);
+            global.mf_flop_back.Add(back[9]);
             global.mf_count++;
         }else
         {
@@ -171,9 +230,11 @@ public class MF_Game : MonoBehaviour
     }
 
     public void touchBack11(){
-        if (back[10].activeInHierarchy) // 判斷back1是否為顯示狀態
+        if (back[10].activeInHierarchy) 
         {
             back[10].SetActive(false);
+            global.mf_flop.Add(front[10]);
+            global.mf_flop_back.Add(back[10]);
             global.mf_count++;
         }else
         {
@@ -182,9 +243,11 @@ public class MF_Game : MonoBehaviour
     }
 
     public void touchBack12(){
-        if (back[11].activeInHierarchy) // 判斷back1是否為顯示狀態
+        if (back[11].activeInHierarchy) 
         {
             back[11].SetActive(false);
+            global.mf_flop.Add(front[11]);
+            global.mf_flop_back.Add(back[11]);
             global.mf_count++;
         }else
         {
