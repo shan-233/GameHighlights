@@ -15,16 +15,20 @@ public class MF_Game : MonoBehaviour
     public GameObject[] back = new GameObject[12]; // 全部的封面圖
     public GameObject[] button = new GameObject[12]; // 按鈕
     public GameObject txt_count; // 翻牌次數
-    public int timeTotalCount; // 紀錄所有的點擊次數（拿來判斷觸發第一張被點的牌就開始時間）
+    public GameObject txt_time; // 遊戲時間
+    public int timeTotalCount; // 紀錄所有的點擊次數（拿來判斷觸發第一張被點的牌就開始時間
+
 
 
     void Start()
     {
         int[] a = GetRandomNum(); // 宣告名為a的int陣列，把隨機亂數陣列的結果裝進去
 
-        startGameButton = GameObject.Find("MF_StartGame"); // 設定stratGameButton找到MF_StartGame遊戲開始的按鈕
+        
         mf_barrier = GameObject.Find("barrier"); // 設定mf_barrier找到barrier（還沒按遊戲開始前都會在，表示不能按其他按鈕）
         txt_count = GameObject.Find("Count"); // 設定txt_count找到紀錄翻牌次數的Count
+        txt_time = GameObject.Find("Time"); // 設定txt_time找到紀錄時間的Time
+        startGameButton = GameObject.Find("MF_StartGame"); // 設定stratGameButton找到MF_StartGame遊戲開始的按鈕
         mf_gameresult = GameObject.Find("Button");  // 設定mf_gameresult找到遊戲結果的Button
         front[0] = GameObject.Find("front_1"); // 設定fornt[0]找到front_1
         front[1] = GameObject.Find("front_2"); // 設定fornt[1]找到front_2
@@ -43,13 +47,19 @@ public class MF_Game : MonoBehaviour
         {  
            // 設定GameObject front0~11裡面的圖片抓到從Random出來的值（因為此遊戲的img在MemoryFlop資料夾裡，所以在路徑上就多了一層）
            front[i].GetComponent<Image>().sprite = (Sprite)Resources.Load<Sprite>("MemoryFlop/img_"+a[i]);  
-        }
+        }        
+
+        global.mf_total_count = 0;
+        global.mf_time = 0;
+        global.mf_total_back.Clear();
     }
 
     
     void Update()
     {  
         txt_count.GetComponent<Text>().text = global.mf_total_count.ToString(); //更新count顯示到Text上
+        txt_time.GetComponent<Text>().text = global.mf_time.ToString(); //更新時間顯示到Text上
+        
 
         if(global.mf_count >= 2 && global.mf_flop.Count >= 2){ // 如果亮兩張牌
             for (int i = 0; i < button.Length ; i++){ // 進入for迴圈
@@ -67,8 +77,6 @@ public class MF_Game : MonoBehaviour
             mf_gameresult.SetActive(false); // 繼續隱藏遊戲結果按鈕
         }
         
-        
-
     }
 
 
