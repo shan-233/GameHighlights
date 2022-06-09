@@ -17,4 +17,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MemoryFlop/MF_Result.unity
     guid: 83f56f41e7d58fc4f88b59ed7bf7e19c
+  - enabled: 1
+    path: Assets/Scenes/GuessTheNumber/GTN_Main.unity
+    guid: 1f33a68d22612ea41abaa03c3da851ab
+  - enabled: 1
+    path: Assets/Scenes/GuessTheNumber/Game_GTN.unity
+    guid: 9b8b85d59284e0242bdb60c6be82400e
+  - enabled: 1
+    path: Assets/Scenes/GuessTheNumber/GTN_Result.unity
+    guid: bbbf94497231630498d38237265268cf
   m_configObjects: {}

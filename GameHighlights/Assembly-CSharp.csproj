@@ -36,6 +36,9 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\GuessTheNumber\GTN_Button.cs" />
+     <Compile Include="Assets\Scripts\GuessTheNumber\GTN_Game.cs" />
+     <Compile Include="Assets\Scripts\GuessTheNumber\GTN_Result.cs" />
      <Compile Include="Assets\Scripts\Main\Button.cs" />
      <Compile Include="Assets\Scripts\MemoryFlop\MF_Button.cs" />
      <Compile Include="Assets\Scripts\MemoryFlop\MF_Game.cs" />
