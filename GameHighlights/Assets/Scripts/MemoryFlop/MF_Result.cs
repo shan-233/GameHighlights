@@ -16,7 +16,8 @@ public class MF_Result : MonoBehaviour
         MF_Time = GameObject.Find("MF_Time");
 
         MF_Name.GetComponent<Text>().text = global.mf_name;
-        MF_Count.GetComponent<Text>().text = global.mf_total_count.ToString();   
+        MF_Count.GetComponent<Text>().text = global.mf_total_count.ToString();
+        MF_Time.GetComponent<Text>().text = global.mf_time.ToString();
     }
 
     

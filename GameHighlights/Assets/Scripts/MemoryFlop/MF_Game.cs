@@ -8,19 +8,24 @@ using UnityEngine.Events; // 延遲執行程式碼
 
 public class MF_Game : MonoBehaviour
 {
-    public GameObject mf_gameresult;
+    public GameObject startGameButton; // 遊戲開始按鈕
+    public GameObject mf_barrier;  //牌的屏障
+    public GameObject mf_gameresult; // 遊戲結果按鈕
     public GameObject[] front = new GameObject[12]; // 全部水果圖
     public GameObject[] back = new GameObject[12]; // 全部的封面圖
     public GameObject[] button = new GameObject[12]; // 按鈕
-    // public Sprite[] org = new Sprite[12]; // 原本的圖
-    public GameObject txt_count;
+    public GameObject txt_count; // 翻牌次數
+    public int timeTotalCount; // 紀錄所有的點擊次數（拿來判斷觸發第一張被點的牌就開始時間）
+
 
     void Start()
     {
         int[] a = GetRandomNum(); // 宣告名為a的int陣列，把隨機亂數陣列的結果裝進去
 
-        txt_count = GameObject.Find("Count"); // 設定txt_count找到Count
-        mf_gameresult = GameObject.Find("Button");  // 設定mf_gameresult找到Button
+        startGameButton = GameObject.Find("MF_StartGame"); // 設定stratGameButton找到MF_StartGame遊戲開始的按鈕
+        mf_barrier = GameObject.Find("barrier"); // 設定mf_barrier找到barrier（還沒按遊戲開始前都會在，表示不能按其他按鈕）
+        txt_count = GameObject.Find("Count"); // 設定txt_count找到紀錄翻牌次數的Count
+        mf_gameresult = GameObject.Find("Button");  // 設定mf_gameresult找到遊戲結果的Button
         front[0] = GameObject.Find("front_1"); // 設定fornt[0]找到front_1
         front[1] = GameObject.Find("front_2"); // 設定fornt[1]找到front_2
         front[2] = GameObject.Find("front_3"); // 設定fornt[2]找到front_3
@@ -39,8 +44,6 @@ public class MF_Game : MonoBehaviour
            // 設定GameObject front0~11裡面的圖片抓到從Random出來的值（因為此遊戲的img在MemoryFlop資料夾裡，所以在路徑上就多了一層）
            front[i].GetComponent<Image>().sprite = (Sprite)Resources.Load<Sprite>("MemoryFlop/img_"+a[i]);  
         }
-
-        // mf_gameresult.SetActive(false); // 設定遊戲結果為隱藏
     }
 
     
@@ -64,6 +67,25 @@ public class MF_Game : MonoBehaviour
             mf_gameresult.SetActive(false); // 繼續隱藏遊戲結果按鈕
         }
         
+        
+
+    }
+
+
+    // 按下開始遊戲的function
+    public void startGame(){
+        startGameButton.SetActive(false); // 設置開始遊戲按鈕為不可見
+        mf_barrier.SetActive(false); // 設置屏障為不可見
+        InvokeRepeating("timeCount", 1f, 1f); // 一秒後，每隔一秒就呼叫一次timeCount
+    }
+
+    // 累積遊戲時間的function
+    public void timeCount(){ 
+        if(global.mf_total_back.Count >= 12){ // 判斷被隱藏的封面總數大於12張牌
+            CancelInvoke("timeCount"); // 關掉這個呼叫
+        }else{
+            global.mf_time += 1; // 遊玩時間加一秒
+        }
     }
 
 
@@ -101,8 +123,7 @@ public class MF_Game : MonoBehaviour
 
 
     // 比對兩張牌的function
-    public void compare(){ 
-
+    public void compare(){
         if(global.mf_flop[0] != null && global.mf_flop[1] != null){ // 如果global.mf_flop陣列裡有兩個物件的話
 
             int[] a = getOneToSix(); // 宣告一個名稱為a的int陣列，裝從getOneToSix回傳來的1-6數值
