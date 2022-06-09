@@ -62,7 +62,7 @@ public class GTN_Game : MonoBehaviour
     //目前在執行的場景//讀取目前在執行的場景
     public void ReloadScene() {
         Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(4);//場景切換
+        SceneManager.LoadScene(6);//場景切換
     }
 
     void FocusPlayerAnswerUI() {//自動獲取輸入焦點->不用再次點選框框
