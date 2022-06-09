@@ -35,4 +35,8 @@ public class MF_Button : MonoBehaviour
         SceneManager.LoadScene(0); // 到Main Scenes
     }
 
+    public void playGame_Main(){ // 點擊再玩一次的按鈕觸發這個function
+        SceneManager.LoadScene(1); // 到MF_Main Scenes
+    }
+
 }
