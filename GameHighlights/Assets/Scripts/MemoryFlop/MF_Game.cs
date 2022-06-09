@@ -12,12 +12,14 @@ public class MF_Game : MonoBehaviour
     public GameObject[] front = new GameObject[12]; // 全部水果圖
     public GameObject[] back = new GameObject[12]; // 全部的封面圖
     public GameObject[] button = new GameObject[12]; // 按鈕
-    public Sprite[] org = new Sprite[12]; // 原本的圖
+    // public Sprite[] org = new Sprite[12]; // 原本的圖
+    public GameObject txt_count;
 
     void Start()
     {
         int[] a = GetRandomNum(); // 宣告名為a的int陣列，把隨機亂數陣列的結果裝進去
 
+        txt_count = GameObject.Find("Count"); // 設定txt_count找到Count
         mf_gameresult = GameObject.Find("Button");  // 設定mf_gameresult找到Button
         front[0] = GameObject.Find("front_1"); // 設定fornt[0]找到front_1
         front[1] = GameObject.Find("front_2"); // 設定fornt[1]找到front_2
@@ -44,6 +46,8 @@ public class MF_Game : MonoBehaviour
     
     void Update()
     {  
+        txt_count.GetComponent<Text>().text = global.mf_total_count.ToString(); //更新count顯示到Text上
+
         if(global.mf_count >= 2 && global.mf_flop.Count >= 2){ // 如果亮兩張牌
             for (int i = 0; i < button.Length ; i++){ // 進入for迴圈
                 button[i].SetActive(false); // 全部按鈕設置為不可見（表示不能再翻）
@@ -117,6 +121,8 @@ public class MF_Game : MonoBehaviour
                     global.mf_total_back.Add(global.mf_flop_back[0]); // 把翻出來的第一張牌封面增加到global.mf_total_back
                     global.mf_total_back.Add(global.mf_flop_back[1]); // 把翻出來的第二張牌封面增加到global.mf_total_back
 
+                    global.mf_total_count++; // 翻牌次數+1
+
                     global.mf_count = 0; // 初始化翻牌次數
                     global.mf_flop.Clear(); // 清掉紀錄翻出來的兩張水果牌
                     global.mf_flop_back.Clear(); //清掉紀錄翻出來的兩張封面牌
@@ -133,6 +139,8 @@ public class MF_Game : MonoBehaviour
         global.mf_flop_back[0].SetActive(true); // 顯示翻出來的第一張牌封面
         global.mf_flop_back[1].SetActive(true); // 顯示翻出來的第二張牌封面
         
+        global.mf_total_count++; // 翻牌次數+1
+
         global.mf_count = 0; // 初始化翻牌次數
         global.mf_flop.Clear(); // 清掉紀錄翻出來的兩張水果牌
         global.mf_flop_back.Clear(); //清掉紀錄翻出來的兩張封面牌
