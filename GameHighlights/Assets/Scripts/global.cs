@@ -18,6 +18,7 @@ public static class global // 設定全域變數
     public static string gtn_name; // 紀錄GTN_Main所輸入的名字
     public static int gtn_total_count; // 紀錄總共猜了幾次
     public static int gtn_time; // 紀錄遊玩時間
+    public static string gtn_level;
 
 
 

@@ -13,6 +13,7 @@ public class GTN_Result : MonoBehaviour
 
     void Start()
     {
+        
         GTN_Name = GameObject.Find("Name");
         GTN_Count = GameObject.Find("Count");
         GTN_Time = GameObject.Find("Time");
@@ -21,14 +22,8 @@ public class GTN_Result : MonoBehaviour
         GTN_Name.GetComponent<Text>().text = global.gtn_name;
         GTN_Count.GetComponent<Text>().text = global.gtn_total_count.ToString();
         GTN_Time.GetComponent<Text>().text = global.gtn_time.ToString();
+        GTN_Level.GetComponent<Text>().text = global.gtn_level;
 
-        if(global.gtn_time <= 10){
-            GTN_Level.GetComponent<Text>().text = "A";
-        }else if(global.gtn_time > 10 && global.gtn_time <= 15){
-            GTN_Level.GetComponent<Text>().text = "B";
-        }else{
-            GTN_Level.GetComponent<Text>().text = "C";
-        }
     }
 
     void Update()

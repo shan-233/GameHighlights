@@ -37,10 +37,12 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\GuessTheNumber\GTN_Button.cs" />
+     <Compile Include="Assets\Scripts\GuessTheNumber\GTN_Excel.cs" />
      <Compile Include="Assets\Scripts\GuessTheNumber\GTN_Game.cs" />
      <Compile Include="Assets\Scripts\GuessTheNumber\GTN_Result.cs" />
      <Compile Include="Assets\Scripts\Main\Button.cs" />
      <Compile Include="Assets\Scripts\MemoryFlop\MF_Button.cs" />
+     <Compile Include="Assets\Scripts\MemoryFlop\MF_Excel.cs" />
      <Compile Include="Assets\Scripts\MemoryFlop\MF_Game.cs" />
      <Compile Include="Assets\Scripts\MemoryFlop\MF_Result.cs" />
      <Compile Include="Assets\Scripts\global.cs" />
@@ -220,6 +222,15 @@
     </Reference>
     <Reference Include="UnityEditor">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2019.4.36f1\Editor\Data\Managed\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+        <HintPath>E:\A. GitHub\GameHighlights\GameHighlights\Assets\Plugins\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Excel">
+        <HintPath>E:\A. GitHub\GameHighlights\GameHighlights\Assets\Plugins\Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus">
+        <HintPath>E:\A. GitHub\GameHighlights\GameHighlights\Assets\Plugins\EPPlus.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2019.4.36f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

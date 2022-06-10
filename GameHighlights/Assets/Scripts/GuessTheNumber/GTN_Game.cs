@@ -99,6 +99,13 @@ public class GTN_Game : MonoBehaviour
     public void timeCount(){ 
         if(playerAnswer == correctAnswer){ // 判斷輸入數字與答案一樣
             CancelInvoke("timeCount"); // 關掉這個呼叫
+            if(global.gtn_time <= 10){
+                global.gtn_level = "A";
+            }else if(global.gtn_time > 10 && global.gtn_time <= 15){
+                global.gtn_level = "B";
+            }else{
+                global.gtn_level = "C";
+            }
         }else{
             global.gtn_time += 1; // 遊玩時間加一秒
         }
