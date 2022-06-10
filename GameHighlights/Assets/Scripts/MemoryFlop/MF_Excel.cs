@@ -40,13 +40,15 @@ public class MF_Excel : MonoBehaviour
                 //加入新的頁面，名稱為sheetName
                 worksheet = package.Workbook.Worksheets.Add(sheetName);
                 //加入列名
-                worksheet.Cells[row_count + 1, 1].Value = "姓名";
-                worksheet.Cells[row_count + 1, 2].Value = "點擊次數";
-                worksheet.Cells[row_count + 1, 3].Value = "遊玩時間";
+                worksheet.Cells[row_count + 1, 1].Value = "日期";
+                worksheet.Cells[row_count + 1, 2].Value = "姓名";
+                worksheet.Cells[row_count + 1, 3].Value = "點擊次數";
+                worksheet.Cells[row_count + 1, 4].Value = "遊玩時間";
                 row_count = 1;
-                worksheet.Cells[row_count + 1, 1].Value = global.mf_name;
-                worksheet.Cells[row_count + 1, 2].Value = global.mf_total_count;
-                worksheet.Cells[row_count + 1, 3].Value = global.mf_time;
+                worksheet.Cells[row_count + 1, 1].Value = System.DateTime.Now.ToString("MM/dd");
+                worksheet.Cells[row_count + 1, 2].Value = global.mf_name;
+                worksheet.Cells[row_count + 1, 3].Value = global.mf_total_count;
+                worksheet.Cells[row_count + 1, 4].Value = global.mf_time;
             }
             else
             {
@@ -54,19 +56,22 @@ public class MF_Excel : MonoBehaviour
                     //加入新的頁面，名稱為sheetName
                     worksheet = package.Workbook.Worksheets.Add(sheetName);
                     //加入列名
-                    worksheet.Cells[row_count + 1, 1].Value = "姓名";
-                    worksheet.Cells[row_count + 1, 2].Value = "點擊次數";
-                    worksheet.Cells[row_count + 1, 3].Value = "遊玩時間";
+                     worksheet.Cells[row_count + 1, 1].Value = "日期";
+                    worksheet.Cells[row_count + 1, 2].Value = "姓名";
+                    worksheet.Cells[row_count + 1, 3].Value = "點擊次數";
+                    worksheet.Cells[row_count + 1, 4].Value = "遊玩時間";
                     row_count = 1;
-                    worksheet.Cells[row_count + 1, 1].Value = global.mf_name;
-                    worksheet.Cells[row_count + 1, 2].Value = global.mf_total_count;
-                    worksheet.Cells[row_count + 1, 3].Value = global.mf_time;
+                    worksheet.Cells[row_count + 1, 1].Value = System.DateTime.Now.ToString("MM/dd");
+                    worksheet.Cells[row_count + 1, 2].Value = global.mf_name;
+                    worksheet.Cells[row_count + 1, 3].Value = global.mf_total_count;
+                    worksheet.Cells[row_count + 1, 4].Value = global.mf_time;
                 }else{
                     worksheet = package.Workbook.Worksheets[sheetName];//選擇已有的頁面sheetName
                     row_count = worksheet.Dimension.Rows;//算出目前頁面的列數
-                    worksheet.Cells[row_count + 1, 1].Value = global.mf_name;
-                    worksheet.Cells[row_count + 1, 2].Value = global.mf_total_count;
-                    worksheet.Cells[row_count + 1, 3].Value = global.mf_time;
+                    worksheet.Cells[row_count + 1, 1].Value = System.DateTime.Now.ToString("MM/dd");
+                    worksheet.Cells[row_count + 1, 2].Value = global.mf_name;
+                    worksheet.Cells[row_count + 1, 3].Value = global.mf_total_count;
+                    worksheet.Cells[row_count + 1, 4].Value = global.mf_time;
                 }
             }
 
