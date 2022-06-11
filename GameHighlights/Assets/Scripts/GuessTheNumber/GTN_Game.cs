@@ -10,8 +10,8 @@ public class GTN_Game : MonoBehaviour
     public int correctAnswer;
     public Text hintMessage;
     public GameObject reStart;
-    public GameObject txt_count; // 次數
-    public GameObject txt_time; // 遊戲時間
+    public GameObject txt_count; // 宣告次數
+    public GameObject txt_time; // 宣告遊戲時間
 
 
     void Start()
@@ -83,6 +83,7 @@ public class GTN_Game : MonoBehaviour
             UpdateHintMessage("答案還要再大一點");
         }
 
+        // 判斷輸入小於0或大於100，就顯示提示訊息
          if (playerAnswer > 100)
         {
             global.gtn_total_count++;
@@ -91,6 +92,7 @@ public class GTN_Game : MonoBehaviour
             global.gtn_total_count++;
             UpdateHintMessage("請勿輸入超過小於 0 的數字喔");
         }
+
         FocusPlayerAnswerUI(); // 自動獲取輸入焦點->不用再次點選框框
     }
 
