@@ -10,13 +10,13 @@ public class GTN_Game : MonoBehaviour
     public int correctAnswer;
     public Text hintMessage;
     public GameObject reStart;
-    public GameObject txt_count; // 翻牌次數
+    public GameObject txt_count; // 次數
     public GameObject txt_time; // 遊戲時間
 
 
     void Start()
     {
-        txt_count = GameObject.Find("Count"); // 設定txt_count找到紀錄翻牌次數的Count
+        txt_count = GameObject.Find("Count"); // 設定txt_count找到紀錄次數的Count
         txt_time = GameObject.Find("Time"); // 設定txt_time找到紀錄時間的Time
         
         global.gtn_total_count = 0;
