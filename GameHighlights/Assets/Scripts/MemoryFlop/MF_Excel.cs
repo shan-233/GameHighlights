@@ -10,8 +10,8 @@ public class MF_Excel : MonoBehaviour
 {
     public void click()
     {
-        //寫入123.xlsx，頁面名稱為"工作表1"
-        WriteExcel("33.xlsx", "翻牌配對");
+        //寫入Unity.xlsx，頁面名稱為"翻牌配對"
+        WriteExcel("Unity.xlsx", "翻牌配對");
     }
 
     public static void WriteExcel(string excelName, string sheetName)

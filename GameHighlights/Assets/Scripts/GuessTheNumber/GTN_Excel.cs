@@ -10,8 +10,8 @@ public class GTN_Excel : MonoBehaviour
 {
     public void click()
     {
-        //寫入123.xlsx，頁面名稱為"工作表1"
-        WriteExcel("33.xlsx", "猜數字");
+        //寫入Unity.xlsx，頁面名稱為"猜數字"
+        WriteExcel("Unity.xlsx", "猜數字");
     }
 
     public static void WriteExcel(string excelName, string sheetName)
@@ -54,7 +54,7 @@ public class GTN_Excel : MonoBehaviour
             }
             else
             {
-                if(package.Workbook.Worksheets[sheetName] == null){
+                if(package.Workbook.Worksheets[sheetName] == null){  // 判斷猜數字這個活頁簿在不在，如果不在的話就新增一個
                     worksheet = package.Workbook.Worksheets.Add(sheetName);
                     //加入列名
                     worksheet.Cells[row_count + 1, 1].Value = "日期";

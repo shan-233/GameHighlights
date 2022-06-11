@@ -19,16 +19,16 @@ public class GTN_Game : MonoBehaviour
         txt_count = GameObject.Find("Count"); // 設定txt_count找到紀錄次數的Count
         txt_time = GameObject.Find("Time"); // 設定txt_time找到紀錄時間的Time
         
-        global.gtn_total_count = 0;
-        global.gtn_time = 0;
+        global.gtn_total_count = 0; //初始化次數
+        global.gtn_time = 0; // 初始化時間
         
-        NewQuestion();
+        NewQuestion(); // 呼叫NewQuestion
     }
 
     void Update()
     {
-        txt_count.GetComponent<Text>().text = global.gtn_total_count.ToString(); //更新count顯示到Text上
-        txt_time.GetComponent<Text>().text = global.gtn_time.ToString(); //更新時間顯示到Text上
+        txt_count.GetComponent<Text>().text = global.gtn_total_count.ToString(); // 更新count顯示到Text上
+        txt_time.GetComponent<Text>().text = global.gtn_time.ToString(); // 更新時間顯示到Text上
     }
 
 
@@ -86,7 +86,7 @@ public class GTN_Game : MonoBehaviour
         // 判斷輸入小於0或大於100，就顯示提示訊息
          if (playerAnswer > 100)
         {
-            global.gtn_total_count++;
+            global.gtn_total_count++; // 次數+1
             UpdateHintMessage("請勿輸入超過大於 100 的數字喔");
         }else if(playerAnswer < 0){
             global.gtn_total_count++;
@@ -101,6 +101,8 @@ public class GTN_Game : MonoBehaviour
     public void timeCount(){ 
         if(playerAnswer == correctAnswer){ // 判斷輸入數字與答案一樣
             CancelInvoke("timeCount"); // 關掉這個呼叫
+
+            // 依照遊玩時間判斷級別
             if(global.gtn_time <= 10){
                 global.gtn_level = "A";
             }else if(global.gtn_time > 10 && global.gtn_time <= 15){

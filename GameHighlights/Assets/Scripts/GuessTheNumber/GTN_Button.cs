@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class GTN_Button : MonoBehaviour
 {
-    public GameObject InputName;
-    public GameObject Msg;
+    public GameObject InputName; // 宣告文字框
+    public GameObject Msg; // 宣告提示訊息
 
     void Start()
     {
