@@ -9,6 +9,7 @@ public class C_Game : MonoBehaviour
     public GameObject txt_count; // 次數
     public GameObject txt_time; // 遊戲時間
     public GameObject GameResult; // 遊戲結果
+    public GameObject txt_record;
     int random; // 用數字紀錄顏色，1紅、2藍、3綠、4黃
     int randomCount; // 紀錄點擊次數
     int c_rotate = 0; // 拿來判斷是否要繼續轉的值
@@ -24,6 +25,8 @@ public class C_Game : MonoBehaviour
         transform.Rotate(0,0,speed);
         global.c_total_count = 0; //初始化次數
         global.c_time = 0; // 初始化時間
+
+        txt_record.GetComponent<Text>().text = global.highestRecord.ToString();
 
         // 遊戲一開始就隨機一個顏色
         ColorRandomNum(); // 呼叫隨機某一個顏色的function
@@ -46,8 +49,16 @@ public class C_Game : MonoBehaviour
     {
         txt_count.GetComponent<Text>().text = global.c_total_count.ToString(); //更新count顯示到Text上
         txt_time.GetComponent<Text>().text = global.c_time.ToString();
+        
+        if(global.c_total_count > global.highestRecord){
+                global.highestRecord = global.c_total_count;
+                txt_record.GetComponent<Text>().text = global.highestRecord.ToString();
+        }
 
         if(c_rotate == 1){
+            if(global.c_total_count > global.highestRecord){
+                global.highestRecord = global.c_total_count;
+            }
             transform.Rotate(0,0,0);
             GameResult.SetActive(true);
         }else{

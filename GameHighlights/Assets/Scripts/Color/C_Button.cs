@@ -11,13 +11,12 @@ public class C_Button : MonoBehaviour
 
     void Start()
     {
-        
-    }
 
+    }
 
     void Update()
     {
-        
+
     }
 
     public void goToC_Game(){ // 點擊開始遊戲的按鈕觸發這個function
@@ -37,9 +36,7 @@ public class C_Button : MonoBehaviour
         SceneManager.LoadScene(0); // 到Main Scenes
     }
 
-        public void playGame_Main(){ // 點擊再玩一次的按鈕觸發這個function
+    public void playGame_Main(){ // 點擊再玩一次的按鈕觸發這個function
         SceneManager.LoadScene(7); // 到C_Main Scenes
     }
-
-
 }

@@ -27,6 +27,7 @@ public static class global // 設定全域變數
     public static int c_total_count; // 紀錄總共點了幾次
     public static int c_time; // 紀錄遊玩時間
     public static string c_level;
+    public static int highestRecord; // 紀錄最高紀錄
 
     
 
