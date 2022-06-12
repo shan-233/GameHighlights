@@ -22,6 +22,12 @@ public static class global // 設定全域變數
 
 
 
+    // 眼明手快
+    public static string c_name; // 紀錄C_Main所輸入的名字
+    public static int c_total_count; // 紀錄總共點了幾次
+    public static int c_time; // 紀錄遊玩時間
+    public static string c_level;
+
     
 
 }
