@@ -10,8 +10,8 @@ public class C_Excel : MonoBehaviour
 {
     public void click()
     {
-        //寫入Unity.xlsx，頁面名稱為"眼明手快"
-        WriteExcel("Unity.xlsx", "眼明手快");
+        //寫入Final_4.xlsx，頁面名稱為"眼明手快"
+        WriteExcel("Final_4.xlsx", "眼明手快");
     }
 
     public static void WriteExcel(string excelName, string sheetName)

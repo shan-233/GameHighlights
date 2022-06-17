@@ -31,4 +31,12 @@ public static class global // 設定全域變數
 
     
 
+
+    // 心眼不一
+    public static string dm_name; // 紀錄在心眼不一首頁所輸入的名字
+    public static int dm_total_count; // 紀錄總共答對了幾題
+    public static int dm_total_miss; // 紀錄總共打錯了幾題
+    
+
+
 }

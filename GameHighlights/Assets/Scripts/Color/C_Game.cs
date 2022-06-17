@@ -134,7 +134,6 @@ public class C_Game : MonoBehaviour
     }
 
 
-
     // 當滑鼠左鍵點擊一下就會執行判斷
     public void oneClickRed(){
         if(Input.GetMouseButtonDown(0)){ //當按下左鍵
