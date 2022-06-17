@@ -263,8 +263,8 @@ public class Font : MonoBehaviour
     // 匯出Excel
     public void click()
     {
-        //寫入Final_4.xlsx，頁面名稱為"心眼不一"
-        WriteExcel("Final_4.xlsx", "心眼不一");
+        //寫入Final_14.xlsx，頁面名稱為"心眼不一"
+        WriteExcel("Final_14.xlsx", "心眼不一");
     }
 
     public static void WriteExcel(string excelName, string sheetName)

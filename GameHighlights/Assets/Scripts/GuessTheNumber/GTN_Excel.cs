@@ -10,8 +10,8 @@ public class GTN_Excel : MonoBehaviour
 {
     public void click()
     {
-        //寫入Final_4.xlsx，頁面名稱為"猜數字"
-        WriteExcel("Final_4.xlsx", "猜數字");
+        //寫入Final_14.xlsx，頁面名稱為"猜數字"
+        WriteExcel("Final_14.xlsx", "猜數字");
     }
 
     public static void WriteExcel(string excelName, string sheetName)
