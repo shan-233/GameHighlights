@@ -89,7 +89,7 @@ public class MF_Game : MonoBehaviour
 
     // 累積遊戲時間的function
     public void timeCount(){ 
-        if(global.mf_total_back.Count >= 12){ // 判斷被隱藏的封面總數大於12張牌
+        if(global.mf_total_back.Count >= 12){ // 判斷被隱藏的封面總數大於等於12張牌
             CancelInvoke("timeCount"); // 關掉這個呼叫
         }else{
             global.mf_time += 1; // 遊玩時間加一秒
