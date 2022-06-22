@@ -21,6 +21,8 @@ public class MF_Result : MonoBehaviour
         MF_Count.GetComponent<Text>().text = global.mf_total_count.ToString();
         MF_Time.GetComponent<Text>().text = global.mf_time.ToString();
 
+
+        // 依照次數判斷評語要顯示什麼
         if(global.mf_total_count <= 12){
             MF_Level.GetComponent<Text>().text = "WOW～你是天才吧！";
         }else if(global.mf_total_count > 12 && global.mf_total_count <= 18){

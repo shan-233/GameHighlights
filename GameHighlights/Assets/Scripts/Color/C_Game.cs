@@ -14,19 +14,20 @@ public class C_Game : MonoBehaviour
     int randomCount; // 紀錄點擊次數
     int c_rotate = 0; // 拿來判斷是否要繼續轉的值
     int stay2D; // 拿來記錄目前跑到哪一塊
-    float speed = 0.2f;
-    int addcount = 5;
+    float speed = 0.2f;  // 紀錄針旋轉速度
+    int addcount = 5;  // 紀錄次數（用來判斷每5下就加0.2f速度）
 
     void Start()
     {
-        c_rotate = 0;
+        // 初始化值
+        c_rotate = 0; 
         speed = 0.2f;
         addcount = 5;
         transform.Rotate(0,0,speed);
         global.c_total_count = 0; //初始化次數
         global.c_time = 0; // 初始化時間
 
-        txt_record.GetComponent<Text>().text = global.highestRecord.ToString();
+        txt_record.GetComponent<Text>().text = global.highestRecord.ToString();  // 將最高紀錄傳到txt_record
 
         // 遊戲一開始就隨機一個顏色
         ColorRandomNum(); // 呼叫隨機某一個顏色的function
@@ -41,26 +42,26 @@ public class C_Game : MonoBehaviour
             img.color = UnityEngine.Color.yellow;
         }
 
-        InvokeRepeating("timeCount", 1f, 1f);
+        InvokeRepeating("timeCount", 1f, 1f);  // 計時器，(一秒後執行timeCount，接下來的每一秒都會呼叫一次)
     }
 
 
     void Update()
     {
         txt_count.GetComponent<Text>().text = global.c_total_count.ToString(); //更新count顯示到Text上
-        txt_time.GetComponent<Text>().text = global.c_time.ToString();
+        txt_time.GetComponent<Text>().text = global.c_time.ToString();  // 更新時間
         
-        if(global.c_total_count > global.highestRecord){
-                global.highestRecord = global.c_total_count;
-                txt_record.GetComponent<Text>().text = global.highestRecord.ToString();
+        if(global.c_total_count > global.highestRecord){  // 如果目前點擊的次數大於最高紀錄
+                global.highestRecord = global.c_total_count; // 把目前的次數更新到最高紀錄
+                txt_record.GetComponent<Text>().text = global.highestRecord.ToString();  // 在畫面上跟著更新目前最高紀錄次數
         }
 
-        if(c_rotate == 1){
+        if(c_rotate == 1){  // 如果遊戲結束的話
             if(global.c_total_count > global.highestRecord){
                 global.highestRecord = global.c_total_count;
             }
-            transform.Rotate(0,0,0);
-            GameResult.SetActive(true);
+            transform.Rotate(0,0,0);  // 停止旋轉
+            GameResult.SetActive(true);  // 顯示GameResult
         }else{
             // 判斷針轉的方向
             if(global.c_total_count <= addcount){

@@ -28,11 +28,11 @@ public class D_Button : MonoBehaviour
         }
     }
 
-    public void GoToGameMain(){
+    public void GoToGameMain(){ //再玩一次的按鈕,但會回到首頁,並請重新輸入名字
         SceneManager.LoadScene(10);
     }
 
-    public void GoToMain(){
+    public void GoToMain(){ //回首頁
         SceneManager.LoadScene(0);
     }
 }

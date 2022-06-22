@@ -10,7 +10,7 @@ using OfficeOpenXml;
 
 public class Font : MonoBehaviour
 {
-    public GameObject word; // 字和顏色
+     public GameObject word; // 字和顏色
     public GameObject button1; // 左邊按鈕
     public GameObject button2; // 右邊按鈕
     public GameObject startButton; // 開始遊戲按鈕
@@ -32,7 +32,7 @@ public class Font : MonoBehaviour
     Color purpleColor; //紫
 
     static int time = 15; // 宣告倒數計時時間
-    static string randomColorText; // 宣告按鈕上的文字
+    static string randomColorText; // 宣告題目
     static int topic = 0; // 紀錄7個題目
     static string[] randomWord; // 隨機文字的全域變數
     static Color[] randomColor; //隨機顏色的全域變數
@@ -126,16 +126,16 @@ public class Font : MonoBehaviour
     // 按下開始遊戲，就開始倒數計時
     public void startGame(){
         startButton.SetActive(false); // 設定開始遊戲按鈕隱藏
-        resultImg.SetActive(false);
+        resultImg.SetActive(false); //隱藏白布
         InvokeRepeating("Time", 1f, 1f); // 在一秒後呼叫Time這個函式，然後每隔一秒就呼叫一次
     }
 
     void Time(){
         if(time == 0){ // 當倒數計時時間歸0時
             CancelInvoke("Time");  // 停止呼叫這個延遲function
-            resultImg.SetActive(true);
+            resultImg.SetActive(true); //顯示白布
             resultTxt.GetComponent<Text>().text = "遊戲結束"; //顯示遊戲結束畫面
-            Invoke("changeResult", 1.3f); // 過1.3秒就執行changeResult這個函示
+            Invoke("changeResult", 1.3f); // 過1.3秒就執行changeResult這個函式
         }else{
             time -= 1;  // 時間減1
             resultImg.SetActive(false);
@@ -191,7 +191,7 @@ public class Font : MonoBehaviour
     // 延遲換題目
     void delayChange(){
         updateButtonAndWord();
-        msgTxt.GetComponent<Text>().text = "";
+        msgTxt.GetComponent<Text>().text = ""; //將"選錯囉"刪除
         CancelInvoke("delayChange"); // 關掉延遲這個function
     }
 
