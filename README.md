@@ -21,7 +21,7 @@
 
 ### 使用者介面流程與技術簡述
 #### **Build Settings場景順序**
-![image](https://github.com/shan-233/GameHighlights/assets/106702800/bfda9c71-9302-4854-9b2f-38b70d370a8d)
+![image](https://github.com/shan-233/GameHighlights/assets/106702800/6cbcd27c-bc4f-485e-9e30-01a82a5b7951)
 
 #### **首頁**
 畫面上分別放了四個按鈕，點擊對應的按鈕就會導至對應的遊戲畫面首頁。
